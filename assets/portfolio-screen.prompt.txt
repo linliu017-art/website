@@ -1,0 +1,3 @@
+Generated with the built-in imagegen tool for this website.
+Asset: portfolio-screen.png
+Prompt: A single isolated 3D portfolio screen prop on a transparent background. Chunky rounded off-white/silver frame, glossy black screen, subtle perspective and clockwise tilt. Two lines of large heavy condensed white block letters: PORT / FOLIO. A thin vivid lime green selection box with four square corner handles surrounds the text. Soft studio lighting, tactile beveled materials, visible grey thickness. No stand, cable, extra text, or other props.

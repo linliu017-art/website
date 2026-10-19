@@ -10,9 +10,25 @@
   <script src="script.js" defer></script>
 </head>
 <body class="has-portrait">
+  <svg class="collage-filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="collage-outline" x="-15%" y="-15%" width="130%" height="140%" color-interpolation-filters="sRGB">
+        <feComponentTransfer in="SourceAlpha" result="solid-shape">
+          <feFuncA type="discrete" tableValues="0 1"></feFuncA>
+        </feComponentTransfer>
+        <feMorphology in="solid-shape" operator="dilate" radius="3" result="expanded-shape"></feMorphology>
+        <feFlood flood-color="#ffffff" result="outline-color"></feFlood>
+        <feComposite in="outline-color" in2="expanded-shape" operator="in" result="outline"></feComposite>
+        <feMerge>
+          <feMergeNode in="outline"></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
   <a class="skip-link" href="#projects">跳到项目</a>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="Alinix 首页">alinix<span class="brand-dot">®</span><span class="brand-name">刘淋</span></a>
+    <a class="brand" href="#home" aria-label="Alinix 首页"><span class="brand-name">刘淋</span></a>
     <nav aria-label="主导航" id="main-nav">
       <a href="#projects">项目<span>01</span></a>
       <a href="#skills">Skills<span>02</span></a>
@@ -26,7 +42,7 @@
   <main>
     <section class="portrait-hero" id="home" data-screen-label="01 头像拼贴首屏">
       <div class="section-wrap hero-stage">
-        <div class="hero-name-row"><span>AI PRODUCT MANAGER</span><span>THINK IT. MAKE IT.</span></div>
+        <!-- <div class="hero-name-row"><span>AI PRODUCT MANAGER</span><span>THINK IT. MAKE IT.</span></div> -->
         <h1 class="portrait-name" lang="en">Liu Lin<span class="name-period">.</span></h1>
         <div class="hero-side hero-side-left"><span class="pink intro-label">你好，我是刘淋。</span><h2>探索 AI 产品的可能，<br>也亲手把它做出来。</h2><p>产品思考 · Coding 项目<br>Skills · 公众号 Alinix</p><a class="button button-cream" href="#projects">看看我的项目 <span>↗</span></a></div>
         <div class="head-composition">
@@ -35,13 +51,14 @@
             <img class="crown-headphones" src="assets/collage-accessories.png" alt="" aria-hidden="true">
             <span class="app-object deepseek-object" title="DeepSeek"><img src="assets/icons/deepseek-color.svg" alt="DeepSeek"></span>
             <span class="app-object codex-object" title="Codex"><img src="assets/icons/codex.svg" alt="Codex"></span>
-            <span class="app-object jimeng-object" title="即梦"><img src="assets/icons/jimeng-color.svg" alt="即梦"></span>
-            <a class="mini-skills-site" href="#skills" aria-label="查看我的 Skills，内容整理中"><div class="skills-browser-bar"><span>● ● ●</span><span>alinix / skills</span><span>↗</span></div><div class="skills-mini-page"><div class="skills-mini-nav"><span>alinix</span><span>METHODS &amp; WORKFLOWS</span></div><strong>SKILLS<span>↗</span></strong><div class="skills-mini-grid"><span><i>01</i>场景</span><span><i>02</i>流程</span><span><i>03</i>示例</span></div><div class="skills-mini-footer"><span>把方法，变成工具。</span><span>整理中</span></div></div></a>
+            <!-- <span class="app-object jimeng-object" title="即梦"><img src="assets/icons/jimeng-color.svg" alt="即梦"></span> -->
+            <img class="tiger-sticker" src="assets/exec-bb41218e-6822-42c4-af1d-2a1120699fe3_副本.png" alt="像素小老虎贴纸" width="1280" height="1280">
+            <a class="portfolio-screen" href="#projects" aria-label="查看我的作品"><img src="assets/portfolio-screen.png" alt="PORT FOLIO 立体作品集屏幕" width="1024" height="1024"></a>
           </div>
           <div class="portrait-slot"><img class="portrait-image" src="assets/head-warm.svg" alt="刘淋的个人头像" fetchpriority="high" width="840" height="848"></div>
         </div>
         <div class="hero-side hero-side-right"><div class="speech-bubble">What’s on my mind?</div><div class="mind-links"><a href="#projects">Build something <span>↗</span></a><a href="#skills">Share a method <span>↗</span></a><a href="#writing">Write it down <span>↗</span></a></div></div>
-        <div class="hero-bottom"><span>一些实践，一些方法，一些还在生长的想法。</span><a href="#projects">COME AND EXPLORE <span>↓</span></a></div>
+        <!-- <div class="hero-bottom"><span>一些实践，一些方法，一些还在生长的想法。</span><a href="#projects">COME AND EXPLORE <span>↓</span></a></div> -->
       </div>
     </section>
 
@@ -70,16 +87,36 @@
       <div class="writing-layout"><div class="publication"><div class="publication-top"><span>微信公众号</span><span>独立记录 / 持续写作</span></div><strong>Alinix<span>↗</span></strong><p>关于 AI，关于产品，<br>也关于把想法付诸实践。</p><button class="publication-button copy-account" type="button">复制公众号名称 <span>＋</span></button></div><div class="article-placeholder"><div class="article-top"><span class="tiny-label">SELECTED WRITING</span><span class="pending-label">内容占位</span></div><div class="article-content"><span class="article-symbol" aria-hidden="true">“</span><h3>文章在路上，<br>思考一直发生。</h3><p>这里将收录公众号的精选文章。<br>待补充文章标题、摘要与原文链接。</p></div><div class="article-bottom"><span>AI 产品 / 实践笔记 / 观察与思考</span><span>COMING SOON</span></div></div></div>
     </section>
 
-    <section class="about section-wrap section-space" id="about" data-screen-label="05 关于我"><p class="section-kicker">04 / A LITTLE ABOUT ME</p><div class="about-layout"><div><h2>About<br><span class="pink">this person.</span></h2><div class="name-signature">刘淋 <span>/ Alinix</span></div></div><div class="about-copy"><p class="about-lead">我是一名 AI 产品经理，<br>也在尝试亲手把想法做出来。</p><p>目前，我在 GitHub 发布 coding 项目，也会陆续整理自己的 Skills。在公众号 Alinix，记录实践过程与产品思考。</p><p>这个网站是这些探索的集合，也会随着新的项目与文章，一点点更新。</p><div class="about-tags"><span>AI 产品</span><span>Vibe Coding</span><span>Skills</span><span>写作</span></div></div></div></section>
-
-    <section class="contact directory-section" id="contact" data-screen-label="06 联系与大目录">
-      <div class="section-wrap directory-layout">
-        <div class="directory-person"><div class="speech-bubble">What next?</div><div class="footer-portrait"><img class="footer-portrait-image" src="assets/head-warm.svg" alt="刘淋的个人头像" loading="lazy" width="840" height="848"></div></div>
-        <div class="directory-content"><p class="section-kicker">05 / KEEP EXPLORING</p><nav class="large-directory" aria-label="页尾目录"><a href="#home"><span class="dir-number">01</span><strong>Home</strong><span class="directory-decoration">↗</span></a><a href="#projects"><span class="dir-number">02</span><strong>Projects</strong><span class="directory-decoration">↗</span></a><a href="#skills"><span class="dir-number">03</span><strong>Skills</strong><span class="directory-decoration">✳</span></a><a href="#writing"><span class="dir-number">04</span><strong>Writing</strong><span class="directory-decoration">↗</span></a><a href="#about"><span class="dir-number">05</span><strong>About</strong><span class="directory-decoration">↗</span></a></nav><div class="directory-contact"><p>聊聊 AI 产品，或新的工作机会。</p><div class="contact-links"><a href="https://github.com/linliu017-art" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button class="copy-account" type="button">公众号 Alinix ＋</button><span class="contact-pending">邮箱 · 待补充</span></div></div></div>
+    <section class="about section-wrap section-space" id="about" data-screen-label="05 关于我与联系方式">
+      <p class="section-kicker">04 / A LITTLE ABOUT ME</p>
+      <div class="about-layout">
+        <div class="about-person">
+          <h2>About<br><span class="pink">this person.</span></h2>
+          <div class="name-signature">刘淋 <span>/ Alinix</span></div>
+          <div class="about-portrait">
+            <div class="speech-bubble">Say hello!</div>
+            <img class="footer-portrait-image" src="assets/head-warm.svg" alt="刘淋的个人头像" loading="lazy" width="840" height="848">
+          </div>
+        </div>
+        <div class="about-copy">
+          <p class="about-lead">我是一名 AI 产品经理，<br>也在尝试亲手把想法做出来。</p>
+          <p>目前，我在 GitHub 发布 coding 项目，也会陆续整理自己的 Skills。在公众号 Alinix，记录实践过程与产品思考。</p>
+          <p>这个网站是这些探索的集合，也会随着新的项目与文章，一点点更新。</p>
+          <div class="about-tags"><span>AI 产品</span><span>Vibe Coding</span><span>Skills</span><span>写作</span></div>
+          <div class="about-contact" id="contact" aria-labelledby="contact-title">
+            <h3 id="contact-title">联系方式 <span aria-hidden="true">↗</span></h3>
+            <p>聊聊 AI 产品，或新的工作机会。</p>
+            <div class="contact-links">
+              <a href="https://github.com/linliu017-art" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+              <a href="tel:15612233977"><span class="phone-label"><svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"></path></svg>15612233977</span> <span aria-hidden="true">↗</span></a>
+              <a href="mailto:linliu017@gmail.com">linliu017@gmail.com <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer section-wrap"><a class="brand" href="#home">alinix<span class="brand-dot">®</span></a><span>© 2026 刘淋 · 持续构建，持续记录。</span><a href="#home">回到顶部 ↑</a></footer>
+  <footer class="site-footer section-wrap"><a class="brand" href="#home"></a><span>© 2026 刘淋 · 持续构建，持续记录。</span><a href="#home">回到顶部 ↑</a></footer>
   <div class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
