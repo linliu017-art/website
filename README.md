@@ -10,7 +10,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-响应式布局-35674d?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/依赖-0-69746d?style=flat-square)
 
-[认识这个主页](#关于这个主页) · [本地打开](#快速开始) · [换成你的内容](#定制指南)
+[在线访问 ↗](https://linliu017-art.github.io/website/) · [认识这个主页](#关于这个主页) · [本地打开](#快速开始) · [换成你的内容](#定制指南)
 
 </div>
 
@@ -46,7 +46,7 @@ git clone https://github.com/linliu017-art/website.git
 cd website
 ```
 
-私有仓库需要使用具有访问权限的 GitHub 账号克隆。
+也可以直接访问 [在线主页](https://linliu017-art.github.io/website/)，无需下载项目。
 
 **2. 打开主页**
 
