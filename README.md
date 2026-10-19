@@ -2,13 +2,13 @@
 
 <sub>HELLO, WORLD · WELCOME TO MY SPACE</sub>
 
-# 我的个人主页
+# 刘淋 · Alinix
 
 介绍自己，记录探索，让想法慢慢成为作品。
 
-![HTML5](https://img.shields.io/badge/HTML5-原生页面-35674d?style=flat-square)
-![CSS3](https://img.shields.io/badge/CSS3-响应式布局-35674d?style=flat-square)
-![Dependencies](https://img.shields.io/badge/依赖-0-69746d?style=flat-square)
+![HTML5](https://img.shields.io/badge/HTML5-原生页面-20243d?style=flat-square)
+![CSS3](https://img.shields.io/badge/CSS3-响应式布局-efa0bc?style=flat-square)
+![Dependencies](https://img.shields.io/badge/依赖-0-20243d?style=flat-square)
 
 [在线访问 ↗](https://linliu017-art.github.io/website/) · [认识这个主页](#关于这个主页) · [本地打开](#快速开始) · [换成你的内容](#定制指南)
 
@@ -18,13 +18,13 @@
 
 ## 关于这个主页
 
-这是我的个人网站，用来分享个人介绍、正在做的项目，以及感兴趣的方向。
+这是刘淋的个人作品集，记录 AI 产品思考、Coding 项目、Skills 与公众号 Alinix 的写作。
 
-页面以暖白为底色，搭配深绿色与留白，让内容保持清晰、轻松。所有内容与样式都收在一个 HTML 文件里，从打开到修改都很直接。
+页面采用深蓝与粉色，结合大字号姓名、头像与工具图标的分层拼贴。根据提供的 `alinix-portfolio/design-v5.html` 设计稿实现，素材均保存在项目内，部署后无需依赖原设计稿服务器。
 
 | 简洁轻量 | 随屏适配 | 方便修改 |
 | :--- | :--- | :--- |
-| 原生 HTML + CSS，无需安装依赖 | 桌面双列展示，手机自动切换单列 | 一个文件即可调整内容和样式 |
+| 原生 HTML、CSS 和 JavaScript，无需构建 | 桌面多列展示，手机自动切换单列 | 内容、样式与交互分别维护 |
 
 ## 页面一览
 
@@ -33,9 +33,11 @@
 | **Hello, world** | 姓名、简短介绍与项目入口 |
 | **关于我** | 职业、兴趣和正在探索的方向 |
 | **我的项目** | 用卡片展示作品与项目说明 |
+| **Skills** | 方法与工作流的整理计划 |
+| **写作** | 公众号 Alinix 与精选文章预留区域 |
 | **保持联系** | 预留邮箱和社交主页的位置 |
 
-> 当前版本是主页的起点，姓名、项目介绍和联系方式仍待补充。
+> Skills、精选文章、下一个项目及邮箱仍按设计稿保留待更新状态。
 
 ## 快速开始
 
@@ -67,25 +69,28 @@ python3 -m http.server 8000
 
 ## 定制指南
 
-在 [`index.html`](./index.html) 中找到对应位置，替换成自己的内容。
+在 [`index.html`](./index.html) 中修改内容，在 [`styles.css`](./styles.css) 中调整样式。移动端菜单和公众号名称复制逻辑位于 [`script.js`](./script.js)。
 
 | 想修改什么 | 在哪里修改 |
 | :--- | :--- |
 | 浏览器标签页标题 | `<title>` |
 | 网站简介 | `<meta name="description">` |
-| 姓名和开场介绍 | `.hero` 区域 |
+| 姓名和开场介绍 | `#home` 区域 |
 | 个人经历与兴趣 | `#about` 区域 |
-| 项目名称和描述 | `#projects` 中的 `<article>` |
+| 项目名称、描述与外链 | `#projects` 中的 `.project-card` |
+| Skills 和公众号介绍 | `#skills`、`#writing` 区域 |
 | 邮箱与社交链接 | `#contact` 区域 |
-| 配色 | `<style>` 中的 `:root` 变量及背景色 |
+| 配色 | `styles.css` 中的 `:root` 变量及背景色 |
+| 头像和拼贴素材 | `assets/` 目录 |
 
 目前的主题色：
 
 ```css
 :root {
-  --ink: #24332c;     /* 正文 */
-  --muted: #69746d;   /* 辅助文字 */
-  --accent: #35674d;  /* 主题色 */
+  --bg: #20243d;     /* 深蓝底色 */
+  --pink: #efa0bc;   /* 粉色点缀 */
+  --text: #f4f1e9;   /* 正文 */
+  --muted: #b9bac7;  /* 辅助文字 */
 }
 ```
 
@@ -95,7 +100,10 @@ python3 -m http.server 8000
 
 ```text
 website/
-├── index.html  # 主页内容与样式
+├── index.html  # 页面内容
+├── styles.css  # 视觉样式与响应式布局
+├── script.js   # 移动端导航和公众号复制
+├── assets/     # 头像、拼贴素材与工具图标
 └── README.md   # 项目说明
 ```
 
