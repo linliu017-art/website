@@ -107,6 +107,10 @@ website/
 └── README.md   # 项目说明
 ```
 
+## 自动发布
+
+推送到 `main` 分支后，[GitHub Actions](https://github.com/linliu017-art/website/actions) 会将主页和 `assets/` 素材发布到 GitHub Pages。部署配置位于 `.github/workflows/pages.yml`，也可在 Actions 页面手动运行。
+
 ---
 
 <div align="center">
