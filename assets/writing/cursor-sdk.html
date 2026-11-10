@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Cursor 把编程 Agent 装进 npm 包，团队能留下什么 · Alinix</title>
+  <link rel="stylesheet" href="../../styles.css?v=portfolio-writing-5">
+</head>
+<body>
+  <main class="reading-page">
+    <a class="reading-back" href="../../#writing">← 返回写作</a>
+    <article>
+      <header class="reading-header">
+        <p class="section-kicker">ALINIX / NOTES &amp; WRITING</p>
+        <h1>Cursor 把编程 Agent 装进 npm 包，团队能留下什么</h1>
+        <p class="reading-byline"><span>刘淋 · Alinix</span><span class="writing-draft">本地稿</span></p>
+      </header>
+      <div class="reading-body">
+        <p>打开 Cursor，给它一项任务，看它修改代码。这是很多人熟悉的 AI 编程方式。</p>
+        <p>Cursor 也提供了一个 TypeScript 包 <code>@cursor/sdk</code>。开发者可以在自己的程序里启动 Cursor Agent，把任务交给它，再接收执行过程和结果。官方文档还列出了代码审查、故障分流和 CI 自动修复等用途。</p>
+        <p>我对这件事感兴趣，是因为它让团队有机会把一部分工作方法写进程序，反复调用。至于这些方法能不能成为长期有用的资产，还要看它们能否被测试、维护，以及出了问题以后能不能追查。</p>
+        <figure><img src="cursor-sdk-cover.png" alt="电脑上的代码通过 SDK 连接到云端工作流的示意图" width="1672" height="941" loading="lazy"></figure>
+        <h2>关上电脑以后，任务还会继续吗</h2>
+        <p>这要看 Agent 跑在哪里。</p>
+        <p>Cursor SDK 支持本地和云端运行。本地模式里，Agent 的执行循环运行在 Node 进程中，读取本机工作目录。官方文档特别说明，本地指执行循环和文件访问的位置，模型推理仍通过 Cursor 托管的模型完成。</p>
+        <p>云端模式下，Agent 在隔离的虚拟机里运行。任务可以在调用方断开连接后继续，适合需要并行处理任务，或者发起任务的机器无法一直在线的场景。SDK 也支持把云端任务交给自托管的 worker。</p>
+        <p>它可以根据配置创建拉取请求，供人检查。这里的区别很具体。以前有人在编辑器里发起任务，如今程序也可以在合适的时机发起任务，并把结果交回原来的工作流程。</p>
+        <p>这并不意味着人可以完全退出。代码最终能否合并，仍然需要团队根据测试结果、业务要求和权限规则作判断。</p>
+        <h2>Agent 可以成为产品的一部分</h2>
+        <p>假设团队想给内部同事做一个查询工具。开发者可以用 SDK 接入 Agent，再由自己的应用提供界面、权限和结果展示。Cursor 的文档也把嵌入产品的 Agent 列为一种用途。</p>
+        <p>这让产品负责人要多想一步。用户提出请求以后，Agent 能看到哪些资料？它可以调用哪些工具？结果不可靠时，界面应该怎样提示？这些问题决定了功能能不能交给客户长期使用。</p>
+        <p>一次演示能跑通，和一个功能能稳定交付，中间还有不少工作。团队需要定义输入、检查输出，记录失败情况，并根据实际使用不断修正。模型的能力很重要，产品对它的约束和验证同样重要。</p>
+        <h2>从一次对话走向重复使用</h2>
+        <p>SDK 的另一个用途是在持续集成流程中启动 Agent。例如，测试失败后，程序可以把相关信息交给 Agent，请它分析问题；Agent 给出修改后，再由测试和代码审查决定下一步。</p>
+        <p>这类流程的好处，在于触发条件和后续步骤可以写下来。团队不必每次都从一段新的聊天开始，也可以回头检查某次任务究竟收到什么输入、调用了哪些工具、产出了什么结果。</p>
+        <p>同样值得整理的是团队反复使用的工作方法。一个 Skill 通常由 <code>SKILL.md</code> 和可选的参考材料、脚本组成。它可以告诉 Agent 何时使用这套方法，以及具体应该怎样做。团队把这些文件纳入版本管理后，修改和讨论就有了共同对象。</p>
+        <p>但一份 Skill 文件本身并不保证效果。它是否真的可复用，要看不同人、不同任务运行后是否仍然符合预期。把成功案例和失败案例留下，再定期测试，才能知道一项改动有没有让结果变好。</p>
+        <h2>让 Agent 动手之前，先想清楚权限</h2>
+        <figure><img src="cursor-sdk-permissions.png" alt="Agent 经过权限检查后再继续执行任务的示意图" width="1672" height="941" loading="lazy"></figure>
+        <p>Agent 能读文件、改代码、执行命令，也就可能碰到不该碰的内容。</p>
+        <p>Cursor 官方文档写得很明确，本地 SDK Agent 在默认配置下会直接执行工具调用，headless 模式不会自动弹出人工确认。团队可以通过 hooks、沙箱或自动审核等机制增加限制；自动审核也需要显式启用。</p>
+        <p>Cursor 的自动审核允许团队在 <code>permissions.json</code> 里用自然语言描述规则，再由分类器判断工具调用。比如，清理构建产物和删除包含敏感配置的文件，虽然都涉及删除，却可以按不同规则处理。</p>
+        <p>分类器也会判断失误。它适合帮助团队筛选操作，不能代替测试、最小权限和人工审查。尤其是涉及生产环境、密钥或不可逆操作时，应当提前规定哪些步骤必须停下来，谁有权批准，以及出错后怎样恢复。</p>
+        <h2>产品负责人可以先做哪几件事</h2>
+        <p>先挑一项边界清楚的工作，例如整理一次代码变更，或分析一类常见测试失败。给它准备真实样本，记录 Agent 的结果，再请熟悉业务的人检查。这样既能看到节省了多少人工，也能看到审核花了多少时间。</p>
+        <p>接着检查运行成本。模型调用、云端执行和代码审查都会消耗资源。Agent 一次能处理更多任务，团队也可能收到更多需要检查的结果。任务数量增加以后，测试、仓库和审查流程是否跟得上，需要单独衡量。</p>
+        <p>最后再考虑哪些经验值得写成共享的规则。频繁出现、判断标准相对明确的任务，通常更适合先尝试。那些高度依赖隐含背景、一次出错代价又很高的工作，可以先让 Agent 提供建议，保留人工决定。</p>
+        <p>Agent 让小团队有机会把一些工作做得更连续。要让这份能力留在团队里，光有一条好用的提示词还不够。有人能看懂它，有样本能检验它，出错时能找到原因，它才有机会在下一次任务里继续派上用场。</p>
+        <h2>参考资料</h2>
+        <ul>
+          <li><a href="https://cursor.com/docs/sdk/typescript">Cursor TypeScript SDK 官方文档</a></li>
+          <li><a href="https://cursor.com/changelog/sdk-updates-jun-2026">Cursor SDK 自动审核更新</a></li>
+          <li><a href="https://agentskills.io/specification">Agent Skills 规范</a></li>
+        </ul>
+      </div>
+    </article>
+    <footer class="reading-footer"><a class="reading-back" href="../../#writing">← 返回写作</a></footer>
+  </main>
+</body>
+</html>
