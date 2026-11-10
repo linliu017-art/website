@@ -75,11 +75,11 @@
 
 /* About and contact share one closing section. */
 :root {
-  --closing-footer-height: 44px;
+  --closing-footer-height: clamp(64px, 6vw, 80px);
 }
 .site-footer {
   min-height: var(--closing-footer-height);
-  padding: 12px;
+  padding: 12px max(20px, calc((100% - 1240px) / 2));
 }
 html:has(#about:target) {
   scroll-padding-top: 0;
@@ -90,7 +90,7 @@ html:has(#about:target) {
   justify-content: center;
   min-height: calc(100vh - var(--closing-footer-height));
   min-height: calc(100dvh - var(--closing-footer-height));
-  padding-bottom: 64px;
+  padding-block: 68px 56px;
   overflow: hidden;
 }
 .about-layout{align-items:start}
@@ -109,7 +109,7 @@ html:has(#about:target) {
 .about-contact .contact-links .phone-label{display:inline-flex;align-items:center;gap:8px;color:inherit;font-size:inherit;line-height:inherit}
 .phone-icon{flex-shrink:0;color:var(--pink)}
 @media(max-width:760px){
-  .about{padding-bottom:52px}
+  .about{padding-block:60px 52px}
   .about-person{position:relative;padding-bottom:8px}
   .about-portrait{display:none}
   .about-contact{margin-top:32px;padding-top:24px}
