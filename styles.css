@@ -151,6 +151,22 @@
 .project-card:focus-visible {
   outline-offset: 4px;
 }
+.project-grid > .project-card {
+  display: flex;
+  flex-direction: column;
+}
+.project-card > .project-cover {
+  flex-shrink: 0;
+}
+.project-card > .project-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.project-card .project-tags {
+  margin-top: auto;
+  align-items: center;
+}
 .project-info p {
   font-size: 13px;
   line-height: 1.7;
