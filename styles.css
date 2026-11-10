@@ -74,11 +74,28 @@
 }
 
 /* About and contact share one closing section. */
-.site-footer{padding:12px}
-.about{padding-bottom:64px;overflow:hidden}
+:root {
+  --closing-footer-height: 44px;
+}
+.site-footer {
+  min-height: var(--closing-footer-height);
+  padding: 12px;
+}
+html:has(#about:target) {
+  scroll-padding-top: 0;
+}
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--closing-footer-height));
+  min-height: calc(100dvh - var(--closing-footer-height));
+  padding-bottom: 64px;
+  overflow: hidden;
+}
 .about-layout{align-items:start}
 .about-person{min-width:0}
-.about-portrait{position:relative;width:260px;margin:58px 0 -90px 14px;transform:rotate(-12deg)}
+.about-portrait{position:relative;width:260px;margin:58px 0 0 14px;transform:rotate(-12deg)}
 .about-portrait>.speech-bubble{position:absolute;top:-28px;right:-35px;transform:rotate(8deg);font-size:12px}
 .about-portrait .footer-portrait-image{display:block;height:auto}
 .about-contact{margin-top:44px;padding-top:28px;border-top:1px solid #474747;scroll-margin-top:32px}
